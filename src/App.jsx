@@ -29,9 +29,7 @@ export const App = () => {
   };
 
   const handleSortByLength = () => {
-    const sortedGoods = [...goodsFromServer].sort(
-      (a, b) => a.length - b.length,
-    );
+    const sortedGoods = [...goods].sort((a, b) => a.length - b.length);
 
     setGoods(sortedGoods);
     setSortBy('length');
@@ -48,10 +46,13 @@ export const App = () => {
     setIsReversed(false);
   };
 
-  const visibleGoods = isReversed ? [...goods].slice().reverse() : goods;
+  // const visibleGoods = isReversed ? [...goods].slice().reverse() : goods;
+  const visibleGoods = isReversed ? [...goods].reverse() : goods;
 
   const isModified =
-    sortBy !== 'none' || isReversed || goods !== goodsFromServer;
+    sortBy !== 'none' ||
+    isReversed ||
+    JSON.stringify(goods) !== JSON.stringify(goodsFromServer);
 
   return (
     <div className="section content">
